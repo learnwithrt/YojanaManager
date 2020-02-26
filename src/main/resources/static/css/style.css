@@ -1,0 +1,160 @@
+@charset "ISO-8859-1";
+
+body {
+	font-family: "Lato", sans-serif;
+	transition: background-color .5s;
+}
+input[type="radio"]{
+	height: 30px;
+    width: 30px;
+    margin-top: 10px;
+}
+#page-content{
+	margin-top:30px;
+	margin-bottom:140px;
+}
+.no-space-bottom{
+	margin-bottom:0px !important;
+}
+.regForm{
+	margin-bottom: 200px !important;
+    z-index: 999 !important;
+}
+.active {
+	color: red !important;
+	text-decoration: underline !important;
+}
+
+
+.bg-color {
+	background-color: RGBA(255, 255, 255, 0.90);
+	min-height: 656px;
+}
+
+.modal-content {
+	background-color: darkcyan;
+}
+
+.btn-link {
+	color: white;
+}
+
+.modal-heading h2 {
+	color: #000000;
+}
+.icon-gender{
+	height:50px;
+	width:50px;
+	background: lightgray;
+}
+.sidenav {
+	height: 98%;
+	width: 0;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color: #111;
+	overflow-x: hidden;
+	transition: 0.5s;
+	padding-top: 60px;
+	border-radius: 80px;
+	margin-left: 5px;
+}
+#errorMessage,#requiredMessage{
+	color:red;
+	font-weight:700;
+}
+.modal-dialog{
+	margin-bottom:160px;
+}
+.sidenav a {
+	padding: 8px 8px 8px 32px;
+	text-decoration: none;
+	font-size: 25px;
+	color: #818181;
+	display: block;
+	transition: 0.3s;
+}
+
+.sidenav a:hover {
+	color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+	position: absolute;
+	top: 0;
+	right: 25px;
+	font-size: 36px;
+	margin-left: 50px;
+}
+
+#main {
+	transition: margin-left .5s;
+	padding: 16px;
+}
+
+.logo {
+	height: 100px;
+	width: 100px;
+	padding: 10px;
+	margin-left: 20px;
+}
+.copy-name{
+	text-align:right;
+	padding-right:100px !important;
+}
+.pics img{
+	height:250px;
+	width:250px;
+	border-radius:100px;
+}
+.main-footer {
+	border-top: 2px solid #46494f;
+	border-bottom: 2px solid #46494f;
+	padding: 30px 0 15px 0;
+}
+
+.social li {
+	display: inline-block;
+	margin: 0 15px 15px 15px;
+}
+
+.social li a {
+	padding: 20px;
+}
+
+.social li a:hover {
+	background: #4e91c9;
+	border-color: #4e91c9;
+}
+
+.footer {
+	position: fixed;
+	bottom: 0px;
+	width: 100%;
+	z-index: 999;
+}
+.icons{
+	background: lightgrey;
+    width: 50px;
+    padding-top: 4px;
+}
+.copyright {
+	margin-top: 30px;
+	margin-bottom: 20px;
+}
+
+.copyright p {
+	margin-bottom: 10px;
+	font-size: 12px;
+}
+
+@media screen and (max-height: 450px) {
+	.sidenav {
+		padding-top: 15px;
+	}
+	.sidenav a {
+		font-size: 18px;
+	}
+}

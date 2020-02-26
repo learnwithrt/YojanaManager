@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<base href = "/" />
+<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
+<meta content="IE=edge" http-equiv="X-UA-Compatible">
+<meta content="description" name="description">
+<meta name="google" content="notranslate" />
+<meta content="Rahul Talreja, India" name="author">
+
+<!-- Disable tap highlight on IE -->
+<meta name="msapplication-tap-highlight" content="no">
+<link rel="apple-touch-icon" sizes="180x180" type="image/png"
+	href="/images/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32"
+	href="/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16"
+	href="/images/favicon-16x16.png">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, minimal-ui">
+<title>Yojana-Let's Plan</title>
+<link rel="stylesheet" type="text/css" href="/css/managerstyle.css">
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+<script src="webjars/jquery/1.9.1/jquery.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body class="d-flex flex-column">
+	<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+		<span style="font-size: 30px; cursor: pointer; color: white;"
+			onclick="openNav()">&#9776;</span>
+		<div class="collapse navbar-collapse" id="navbarNavDropdown">
+			<ul class="navbar-nav">
+				<li class="nav-item active"><a class="nav-link"
+					href="logout.html" onclick="logout()" id="logged">Log Out <span class="sr-only">(current)</span>
+				</a></li>
+			</ul>
+		</div>
+		<div class="site-branding" id="logo">
+			<a href="index.html"> <img src="images/logo.png" alt="Yojana"
+				class="logo">
+			</a> <a class="navbar-brand" href="index.html">Yojana</a>
+		</div>
+	</nav>
+	<div class="col-md-8">
+		<div id="homeSidenav" class="sidenav">
+			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+			<a href="index.html" class="active">Home</a> <a href="login.html">Login</a>
+			<a href="signup.html">Sign Up</a>
+			<!-- <a href="about.html">About</a> <a
+								href="contact.html">Contact</a> -->
+		</div>
+		<div id="managerSidenav" class="sidenav">
+			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+			<a href="index.html" >Home</a> <a href="manager.html" class="active">Manage</a>
+			<a href="new_project.html">New Project</a>
+			<!-- <a href="about.html">About</a> <a
+								href="contact.html">Contact</a> -->
+		</div>
+	</div>
+	<div id="userPic" class="user-photo">
+		<h5 id="user_id"></h5>
+		<img class="card-img-top avatarPic" th:src="@{'user/avatar/'}"
+			id="userPicture" />
+	</div>
+	<div id="page-content">
+		<div class="container text-center">
+			<div class="row justify-content-center">
+				<div class="projects-table">
+					<h3 class="header">Available Projects</h3>
+					<table>
+						<thead>
+							<tr>
+								<th>Project ID</th>
+								<th>Name</th>
+								<th>Description</th>
+								<th>Duration</th>
+								<th>Manager</th>
+								<th>Photo</th>
+								<th colspan="4">Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="project : ${projectList}">
+								<td> 
+								<!-- <a th:href="@{'project/'+ ${project.Project_ID}}" title="View Details"> -->
+								<span th:text="${project.Project_ID}"></span></td>
+								<td th:text="${project.Project_name}"></td>
+								<td th:text="${project.Project_description}"></td>
+								<td th:text="${project.Project_Duration}"></td>
+								<td th:text="${project.Project_Manager}"></td>
+								<td><img class="card-img-top avatarPic"
+									th:src="@{'project/avatar/'+ ${project.Project_ID}}"
+									id="projectPicture" th:alt="${project.Project_name}" /></td>
+								<td><a th:href="@{'project/'+ ${project.Project_ID}+'/edit'}"><span class="fa fa-edit fa-2x" title="Edit Project"></span></a>
+								</td>
+								<td><a th:href="@{'project/'+ ${project.Project_ID}+'/delete'}"><span class="fa fa-trash fa-2x" title="Delete Project"></span></a>
+								</td>
+								<td><a th:href="@{'project/'+ ${project.Project_ID}+'/add_task'}"><span class="fa fa-plus-circle fa-2x" title="Add Task"></span></a></td>
+								<td><a th:href="@{'project/'+ ${project.Project_ID}+'/view_tasks'}"><span class="fa fa-th-list fa-2x" title="View Tasks"></span></a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="addProject" class="add-button">
+		<span title="New Project"><a href="new_project.html"><img src="/images/add.png" height=100px
+			width=100px alt="Create New Project" /></a></span>
+	</div>
+
+	<footer class="footer py-4 bg-dark text-white-50" id="managerFooter">
+		<div class="row">
+			<div class="col-md-6" style="text-align: left">
+				<ul class="social">
+					<li><a href="https://www.facebook.com/rahuldtalreja">Facebook</a></li>
+					<li><a href="https://www.twitter.com/rahuldtalreja">Twitter</a></li>
+					<li><a href="https://www.instagram.com/rahuldtalreja/">Instagram</a></li>
+				</ul>
+			</div>
+			<div class="col-md-6 copy-name">
+				<small style="color: white">Copyright &copy; Yojana-Built
+					for <a href="http://www.awaaz.de">Awaaz</a> by <a
+					href="http://www.rahultalreja.in">Rahul Talreja</a>
+				</small>
+			</div>
+		</div>
+	</footer>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#logged").hide();
+			checkSession();
+			$("#requiredMessage").hide();
+			$("#errorMessage").hide();
+		});
+	</script>
+</body>
+</html>

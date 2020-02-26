@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<base href = "/" />
+<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
+<meta content="IE=edge" http-equiv="X-UA-Compatible">
+<meta content="description" name="description">
+<meta name="google" content="notranslate" />
+<meta content="Rahul Talreja, India" name="author">
+
+<!-- Disable tap highlight on IE -->
+<meta name="msapplication-tap-highlight" content="no">
+<link rel="apple-touch-icon" sizes="180x180" type="image/png"
+	href="/images/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32"
+	href="/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16"
+	href="/images/favicon-16x16.png">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, minimal-ui">
+<title>Yojana-Let's Plan</title>
+<link rel="stylesheet" type="text/css" href="/css/managerstyle.css">
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+<script src="webjars/jquery/1.9.1/jquery.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body class="d-flex flex-column">
+	<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+		<span style="font-size: 30px; cursor: pointer; color: white;"
+			onclick="openNav()">&#9776;</span>
+		<div class="collapse navbar-collapse" id="navbarNavDropdown">
+			<ul class="navbar-nav">
+				<li class="nav-item active"><a class="nav-link"
+					href="logout.html" onclick="logout()" id="logged">Log Out <span class="sr-only">(current)</span>
+				</a></li>
+			</ul>
+		</div>
+		<div class="site-branding" id="logo">
+			<a href="index.html"> <img src="images/logo.png" alt="Yojana"
+				class="logo">
+			</a> <a class="navbar-brand" href="index.html">Yojana</a>
+		</div>
+	</nav>
+	<div class="col-md-8">
+		<div id="homeSidenav" class="sidenav">
+			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+			<a href="index.html" class="active">Home</a> <a href="login.html">Login</a>
+			<a href="signup.html">Sign Up</a>
+			<!-- <a href="about.html">About</a> <a
+								href="contact.html">Contact</a> -->
+		</div>
+		<div id="managerSidenav" class="sidenav">
+			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+			<a href="index.html">Home</a> 
+			<a href="manager.html" class="active">Manage</a>
+			<a href="new_project.html">New Project</a>
+			<!-- <a href="about.html">About</a> <a
+								href="contact.html">Contact</a> -->
+		</div>
+	</div>
+	<div id="userPic" class="user-photo">
+		<h5 id="user_id"></h5>
+		<img class="card-img-top avatarPic" th:src="@{'user/avatar/'}"
+			id="userPicture" />
+	</div>
+	<div id="login-container">
+		<div id="menu-1" class="homepage home-section container">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-heading">
+						<h2 class="text-center" style="color: black">Project Details</h2>
+					</div>
+					<hr />
+					<div class="modal-body">
+						<form role="form" method="post" id="updateProjectForm"
+							action="updateProject.html" enctype="multipart/form-data">
+							<div class="form-group">
+								<div class="input-group">
+									<input type="text" class="form-control"
+										placeholder="Project Name" id="proj_id" name="proj_id"
+										th:value="${project.Project_ID}" disabled /> <input
+										type="hidden" th:value="${project.Project_ID}" name="proj_id" />
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="input-group">
+									<input type="text" class="form-control"
+										placeholder="Project Name" id="proj_name" name="proj_name"
+										th:value="${project.Project_name}" />
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="input-group">
+									<input type="text" class="form-control"
+										placeholder="Project Description" id="proj_desc"
+										name="proj_desc" th:value="${project.Project_description}" />
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="input-group">
+									<input type="number" class="form-control" min="1"
+										placeholder="Project Duration(In Months)" id="proj_duration"
+										name="proj_duration" th:value="${project.Project_Duration}" />
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="input-group">
+									<span>Project Manager</span>
+									<div class="col-lg-3" th:object="${user}">
+										<select class="form-control" id="projectManager"
+											name="proj_manager" style="width: 330px">
+											<option th:each="user : ${userList}"
+												th:value="${user.User_ID}"
+												th:text="${user.User_ID}+' : '+${user.User_Name}"></option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="input-group">
+									<input type="file" accept="image/gif, image/jpeg,image/png"
+										class="form-control" id="proj_pic" name="proj_pic" />
+								</div>
+							</div>
+							<div class="form-group text-center">
+								<button type="button" class="btn btn-success btn-lg"
+									onClick="updateProject()">Update</button>
+								<button type="button" class="btn btn-success btn-lg"
+									onClick="cancelProject()">Cancel</button>
+							</div>
+						</form>
+						<span id="requiredMessage">Please fill in the fields
+							highlighted in red.</span> <span id="errorMessage">Snap! Couldn't
+							Add the project.</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer class="footer py-4 bg-dark text-white-50" id="managerFooter">
+		<div class="row">
+			<div class="col-md-6" style="text-align: left">
+				<ul class="social">
+					<li><a href="https://www.facebook.com/rahuldtalreja">Facebook</a></li>
+					<li><a href="https://www.twitter.com/rahuldtalreja">Twitter</a></li>
+					<li><a href="https://www.instagram.com/rahuldtalreja/">Instagram</a></li>
+				</ul>
+			</div>
+			<div class="col-md-6 copy-name">
+				<small style="color: white">Copyright &copy; Yojana-Built
+					for <a href="http://www.awaaz.de">Awaaz</a> by <a
+					href="http://www.rahultalreja.in">Rahul Talreja</a>
+				</small>
+			</div>
+		</div>
+	</footer>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#logged").hide();
+			checkSession();
+			$("#requiredMessage").hide();
+			$("#errorMessage").hide();
+		});
+	</script>
+</body>
+</html>
